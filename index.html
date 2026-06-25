@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>巴厘岛亲子游学营 — 项目全景展示</title>
+<style>
+  :root {
+    --sand: #F5E6D3;
+    --ocean: #1B7B9E;
+    --deep-ocean: #0D4F6B;
+    --coral: #E8734A;
+    --leaf: #4A9C6C;
+    --warm-white: #FFFDF9;
+    --text: #2D3436;
+    --text-light: #636E72;
+    --card-bg: #FFFFFF;
+    --shadow: 0 2px 16px rgba(0,0,0,0.06);
+    --shadow-hover: 0 8px 32px rgba(0,0,0,0.10);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    background: var(--warm-white);
+    color: var(--text);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(160deg, #0D4F6B 0%, #1B7B9E 30%, #2D9DB6 60%, #F5E6D3 100%);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    max-width: 800px;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+    padding: 6px 20px;
+    border-radius: 100px;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.02em;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+    max-width: 560px;
+    margin: 0 auto 2rem;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-stat {
+    text-align: center;
+  }
+  .hero-stat-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+  }
+  .hero-stat-label {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+  }
+  .scroll-hint svg { stroke: #fff; opacity: 0.6; }
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
+    60% { transform: translateX(-50%) translateY(-5px); }
+  }
+
+  /* ── Nav ── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,253,249,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding: 0.75rem 2rem;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+    padding: 0.25rem 0;
+    border-bottom: 2px solid transparent;
+  }
+  .nav a:hover { color: var(--ocean); border-bottom-color: var(--ocean); }
+
+  /* ── Sections ── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+  .section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--deep-ocean);
+    margin-bottom: 0.5rem;
+  }
+  .section-subtitle {
+    color: var(--text-light);
+    margin-bottom: 3rem;
+    font-size: 1rem;
+  }
+  .section-divider {
+    width: 48px;
+    height: 4px;
+    background: var(--coral);
+    border-radius: 2px;
+    margin-bottom: 2rem;
+  }
+
+  /* ── Cards ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .card-icon.ocean { background: #E8F4F8; }
+  .card-icon.coral { background: #FDE8E0; }
+  .card-icon.leaf { background: #E8F5E9; }
+  .card-icon.sun { background: #FFF8E1; }
+  .card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--deep-ocean);
+  }
+  .card p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.7;
+  }
+  .card ul {
+    list-style: none;
+    margin-top: 1rem;
+  }
+  .card ul li {
+    font-size: 0.88rem;
+    color: var(--text);
+    padding: 0.35rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+  .card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.75rem;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--coral);
+    opacity: 0.6;
+  }
+
+  /* ── Feature highlight ── */
+  .highlight-block {
+    background: linear-gradient(135deg, #0D4F6B 0%, #1B7B9E 100%);
+    border-radius: 20px;
+    padding: 3rem;
+    color: #fff;
+    margin: 3rem 0;
+  }
+  .highlight-block h2 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+  }
+  .highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+  .highlight-item h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .highlight-item p {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    line-height: 1.5;
+  }
+
+  /* ── Timeline ── */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--ocean);
+    opacity: 0.2;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 1.8rem;
+    padding-left: 1.5rem;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--ocean);
+    background: #fff;
+  }
+  .timeline-day {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--coral);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .timeline-title {
+    font-weight: 700;
+    color: var(--deep-ocean);
+    margin: 0.2rem 0;
+  }
+  .timeline-desc {
+    font-size: 0.85rem;
+    color: var(--text-light);
+  }
+  .timeline-mode {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 2px 10px;
+    border-radius: 100px;
+    margin-left: 0.5rem;
+    font-weight: 600;
+  }
+  .mode-together { background: #E8F5E9; color: var(--leaf); }
+  .mode-split { background: #FDE8E0; color: var(--coral); }
+
+  /* ── Media Gallery ── */
+  .media-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+  .media-tab {
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: #fff;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-light);
+    transition: all 0.2s;
+  }
+  .media-tab.active, .media-tab:hover {
+    background: var(--ocean);
+    color: #fff;
+    border-color: var(--ocean);
+  }
+  .video-grid, .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.2rem;
+  }
+  .image-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  .video-item, .image-item {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
+  }
+  .video-item:hover, .image-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+  }
+  .video-item video {
+    width: 100%;
+    display: block;
+    background: #000;
+  }
+  .image-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+  }
+  .media-info {
+    padding: 0.75rem 1rem;
+  }
+  .media-info .title {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text);
+  }
+  .media-info .meta {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-top: 0.2rem;
+  }
+
+  /* ── Safety section ── */
+  .safety-principle {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--leaf);
+  }
+  .safety-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--leaf);
+    line-height: 1;
+    min-width: 48px;
+    text-align: center;
+  }
+  .safety-text h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.2rem; }
+  .safety-text p { font-size: 0.82rem; color: var(--text-light); }
+
+  /* ── Team ── */
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.2rem;
+  }
+  .team-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 1.8rem;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--ocean);
+  }
+  .team-card.lead { border-top-color: var(--coral); }
+  .team-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--deep-ocean);
+  }
+  .team-role {
+    font-size: 0.8rem;
+    color: var(--coral);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  .team-desc {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: var(--text-light);
+    font-size: 0.8rem;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+
+  /* ── Scroll animations ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .section { padding: 3rem 1.2rem; }
+    .hero h1 { font-size: 1.8rem; }
+    .hero-stats { gap: 1rem; }
+    .nav { gap: 0.8rem; padding: 0.6rem 1rem; }
+    .nav a { font-size: 0.78rem; }
+    .card-grid, .team-grid { grid-template-columns: 1fr; }
+    .highlight-block { padding: 2rem 1.5rem; }
+  }
+
+  /* ── Lightbox ── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(0,0,0,0.9);
+    align-items: center;
+    justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 8px; }
+  .lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+
+  /* ── Document links ── */
+  .doc-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.75rem;
+  }
+  .doc-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .doc-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+  .doc-icon {
+    width: 40px; height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: #fff;
+  }
+  .doc-icon.pdf { background: #E8734A; }
+  .doc-icon.xlsx { background: #4A9C6C; }
+  .doc-icon.docx { background: #1B7B9E; }
+</style>
+</head>
+<body>
+
+<!-- ════ HERO ════ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">2026 暑期 · 印度尼西亚 · 巴厘岛</div>
+    <h1>巴厘岛亲子游学营</h1>
+    <p class="hero-subtitle">
+      融合森林学校、华德福教育与永续生活理念的沉浸式自然学习之旅<br>
+      全英双语环境 · 分合式亲子设计 · 国际顶尖教育团队
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">7天</div><div class="hero-stat-label">精品行程</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">5期</div><div class="hero-stat-label">暑期营期</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">1:5</div><div class="hero-stat-label">师生比</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">7人</div><div class="hero-stat-label">服务团队</div></div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke-width="2" stroke-linecap="round"/></svg>
+  </div>
+</section>
+
+<!-- ════ NAV ════ -->
+<nav class="nav">
+  <a href="#overview">项目概览</a>
+  <a href="#team">师资团队</a>
+  <a href="#curriculum">课程行程</a>
+  <a href="#safety">安全保障</a>
+  <a href="#media">影像展示</a>
+  <a href="#docs">文档资料</a>
+  <a href="#cooperation">渠道合作</a>
+</nav>
+
+<!-- ════ 1. 项目概览 ════ -->
+<section class="section" id="overview">
+  <h2 class="section-title">🏝️ 项目概览与核心理念</h2>
+  <div class="section-divider"></div>
+  <p class="section-subtitle">不是在教室里"上课"，而是在巴厘岛的沙滩、森林和稻田里，用真实的自然与世界对话</p>
+
+  <div class="card-grid">
+    <div class="card fade-in">
+      <div class="card-icon leaf">🌿</div>
+      <h3>森林学校 (Forest School)</h3>
+      <p>源自北欧的户外教育理念，让孩子在自然环境中长期、持续地学习。不只是偶然去一次公园，而是将整片森林作为课堂。毕业生突出的不只是运动能力，更是风险管理、解决问题和自我掌控感。</p>
+    </div>
+    <div class="card fade-in">
+      <div class="card-icon sun">🔥</div>
+      <h3>华德福 (Waldorf)</h3>
+      <p>强调全人发展，认为教育的本质不是"灌满一桶水，而是点燃一把火"。0-7岁阶段注重节奏、仪式、故事和自由玩耍，为孩子的安全感和创造力打下地基。</p>
+    </div>
+    <div class="card fade-in">
+      <div class="card-icon leaf">🌏</div>
+      <h3>永续生活 (Permaculture)</h3>
+      <p>教导孩子理解人与自然之间的关系，不是单方面"利用自然"或"保护自然"，而是与自然共生。这是一种系统思维，也是一种对地球的敬畏。</p>
+    </div>
+    <div class="card fade-in">
+      <div class="card-icon coral">💡</div>
+      <h3>分合式亲子设计</h3>
+      <p>不是"甩娃"，也不是"全程陪读"。Day 1-2 亲子共同探索建立安全感，Day 3-4 孩子跟专业导师深度学习、家长享受瑜伽SPA，Day 5-7 再次合体分享各自的故事——分开成长，一起发光。</p>
+    </div>
+  </div>
+
+  <div class="highlight-block fade-in">
+    <h2>✨ 项目核心亮点</h2>
+    <div class="highlight-grid">
+      <div class="highlight-item">
+        <h4>🌍 全英双语沉浸</h4>
+        <p>课程全程英文授课+中文翻译辅助，让孩子在真实语境中自然习得英语，不是"学英语"而是"用英语学"。</p>
+      </div>
+      <div class="highlight-item">
+        <h4>👩‍🏫 20年跨国教育专家</h4>
+        <p>课程总监 Carolina Leme 横跨墨西哥、危地马拉、巴西和巴厘岛，持英国森林学校培训师+华德福+永续设计三重认证。</p>
+      </div>
+      <div class="highlight-item">
+        <h4>🎯 4-12岁分龄教学</h4>
+        <p>4-7岁与8-12岁差异化难度设计，每期仅限8个家庭（约16人），小班制确保每个孩子都被看见。</p>
+      </div>
+      <div class="highlight-item">
+        <h4>🛡️ 五维安全体系</h4>
+        <p>安全第一、预防为主、儿童优先、全员负责、底线思维——从行前30天到每日签到，全流程安全管控。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 2. 师资团队 ════ -->
+<section class="section" id="team" style="background: #F8FBFD;">
+  <h2 class="section-title">👩‍🏫 国际师资团队</h2>
+  <div class="section-divider"></div>
+  <p class="section-subtitle">7人专业服务团队，不是导游，不是研学中介——我们是在巴厘岛真正"办学"的教育者</p>
+
+  <div class="team-grid">
+    <div class="team-card lead fade-in">
+      <div class="team-name">Carolina Leme</div>
+      <div class="team-role">课程总监 / 首席教师</div>
+      <div class="team-desc">
+        20余年跨文化儿童教育经验，职业生涯横跨墨西哥、危地马拉、巴西和巴厘岛。持英国森林学校培训师资格、华德福教育基础认证、永续生活设计认证。巴厘岛森林学校联合创始人，两年时间深入研究传统文化中的儿童成长课题。
+      </div>
+    </div>
+    <div class="team-card fade-in">
+      <div class="team-name">外籍主教老师</div>
+      <div class="team-role">全英教学 / PBL项目导师</div>
+      <div class="team-desc">
+        美国学士学位，2015年起在北京任教，2019年获"年度教师"称号。5年以上中国学生教学经验，深刻理解中国孩子的英语学习痛点，擅长PBL项目式学习和儿童行为观察记录。
+      </div>
+    </div>
+    <div class="team-card fade-in">
+      <div class="team-name">双语主教老师</div>
+      <div class="team-role">双语教学 / PBL项目协助</div>
+      <div class="team-desc">
+        国际教育背景，精通英中双语，负责双语教学衔接和PBL项目深度协助，确保零英语基础的孩子也能充分参与。
+      </div>
+    </div>
+    <div class="team-card fade-in">
+      <div class="team-name">全英助教 × 2</div>
+      <div class="team-role">儿童陪伴 / 户外安全保障</div>
+      <div class="team-desc">
+        负责儿童日常陪伴和户外活动安全保障，全天候关注每个孩子的身心状态，确保1:5的精细师生比。
+      </div>
+    </div>
+    <div class="team-card fade-in">
+      <div class="team-name">运营支持团队</div>
+      <div class="team-role">交通 / 翻译 / 统筹 / 应急</div>
+      <div class="team-desc">
+        全英司机（KIR合规车辆）+ 双语翻译（文化解读&本地对接）+ 总策划执行（家长联络&应急协调），7人团队确保每个家庭获得五星级体验。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 3. 课程体系与行程 ════ -->
+<section class="section" id="curriculum">
+  <h2 class="section-title">📋 课程体系与7天行程</h2>
+  <div class="section-divider"></div>
+  <p class="section-subtitle">每天 09:00-16:00 · 全英授课+中文翻译 · 努沙杜瓦五星级度假酒店住宿</p>
+
+  <div class="timeline fade-in">
+    <div class="timeline-item">
+      <div class="timeline-day">Day 1</div>
+      <div class="timeline-title">抵达与初见 <span class="timeline-mode mode-together">亲子共同时光</span></div>
+      <div class="timeline-desc">接机入住努沙杜瓦五星度假酒店，沙滩漫步，欢迎晚宴。让孩子在轻松的氛围中熟悉新环境。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-day">Day 2</div>
+      <div class="timeline-title">自然探索初体验 <span class="timeline-mode mode-together">亲子共同时光</span></div>
+      <div class="timeline-desc">乌布德格拉朗梯田+海洋公园，与海豚互动，私人海滩游泳。亲子共同打开巴厘岛的自然画卷。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-day">Day 3</div>
+      <div class="timeline-title">海洋守护者 <span class="timeline-mode mode-split">分合式 — 孩子PBL课程 / 家长瑜伽SPA</span></div>
+      <div class="timeline-desc"><strong>儿童：</strong>欢迎圈→海洋故事→海滩探索→"我是谁"卡牌游戏→捕食者/猎物游戏→海洋传说→净滩行动→造船实验→自由探索→反思圈。<br><strong>家长：</strong>瑜伽 + 海滩SPA。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-day">Day 4</div>
+      <div class="timeline-title">森林守护者 <span class="timeline-mode mode-split">分合式 — 孩子PBL课程 / 家长自由日</span></div>
+      <div class="timeline-desc"><strong>儿童：</strong>欢迎圈→森林故事→树木感官探索→树木结构认知→"捉迷藏"游戏→木工"我的树牌"→森林超市反思→自由探索→反思圈。<br><strong>家长：</strong>全天五星酒店泳池俱乐部。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-day">Day 5</div>
+      <div class="timeline-title">家庭挑战日 <span class="timeline-mode mode-together">亲子共同时光</span></div>
+      <div class="timeline-desc">家庭趣味运动会：沙滩接力、亲子游泳、拔河对抗赛。全英交流环境，在欢笑中重建亲密连接。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-day">Day 6</div>
+      <div class="timeline-title">荒野探险 <span class="timeline-mode mode-together">亲子共同时光</span></div>
+      <div class="timeline-desc">乌布越野探险+火山观景+田间漫步。在大自然的壮阔中为旅程画上高潮。</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-day">Day 7</div>
+      <div class="timeline-title">满载而归 <span class="timeline-mode mode-together">亲子共同时光</span></div>
+      <div class="timeline-desc">酒店早餐，退房送机。带着满满的故事、作品和改变回家。</div>
+    </div>
+  </div>
+
+  <div class="card-grid" style="margin-top: 2rem;">
+    <div class="card fade-in">
+      <h3>📅 2026暑期营期</h3>
+      <ul>
+        <li>第1期：7/11 - 7/17</li>
+        <li>第2期：7/18 - 7/24</li>
+        <li>第3期：7/25 - 7/31</li>
+        <li>第4期：8/1 - 8/7</li>
+        <li>第5期：8/8 - 8/14</li>
+      </ul>
+    </div>
+    <div class="card fade-in">
+      <h3>👶 招募信息</h3>
+      <ul>
+        <li>年龄：4-7岁 / 8-12岁（分龄差异化难度）</li>
+        <li>规模：每期8个家庭（约16人）</li>
+        <li>地点：印度尼西亚·巴厘岛</li>
+        <li>住宿：努沙杜瓦五星级度假酒店</li>
+        <li>语言：全英授课 + 中文翻译辅助</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 4. 安全保障 ════ -->
+<section class="section" id="safety" style="background: #F8FBFD;">
+  <h2 class="section-title">🛡️ 安全保障体系</h2>
+  <div class="section-divider"></div>
+  <p class="section-subtitle">五大安全原则 · 全维度管控 · 让每个家庭安心享受旅程</p>
+
+  <div class="fade-in">
+    <div class="safety-principle">
+      <div class="safety-num">01</div>
+      <div class="safety-text"><h4>安全第一原则</h4><p>所有活动以安全为首要优先级，安全与行程冲突时，安全优先。</p></div>
+    </div>
+    <div class="safety-principle">
+      <div class="safety-num">02</div>
+      <div class="safety-text"><h4>预防为主原则</h4><p>通过行前培训、隐患排除、制度约束，将安全风险消灭在萌芽状态。</p></div>
+    </div>
+    <div class="safety-principle">
+      <div class="safety-num">03</div>
+      <div class="safety-text"><h4>儿童优先原则</h4><p>涉及儿童安全的环节实行"双确认"制度：工作人员确认 + 家长确认。</p></div>
+    </div>
+    <div class="safety-principle">
+      <div class="safety-num">04</div>
+      <div class="safety-text"><h4>全员负责原则</h4><p>每位工作人员和家长都是安全责任人，实行安全信息实时通报机制。</p></div>
+    </div>
+    <div class="safety-principle">
+      <div class="safety-num">05</div>
+      <div class="safety-text"><h4>底线思维原则</h4><p>针对每一个风险场景制定应急预案，确保有备无患。</p></div>
+    </div>
+  </div>
+
+  <div class="card-grid" style="margin-top: 2rem;">
+    <div class="card fade-in">
+      <h3>🔐 行前保障</h3>
+      <ul>
+        <li>出发前30天证件核查（护照6个月有效期+VOA落地签）</li>
+        <li>出发前7天统一购买保险（保额50万+，含高危运动+医疗运送）</li>
+        <li>出发前14天收集健康信息（过敏史/病史/用药禁忌）</li>
+        <li>出发前7天线上安全说明会（儿童专场）</li>
+      </ul>
+    </div>
+    <div class="card fade-in">
+      <h3>🚌 交通住宿</h3>
+      <ul>
+        <li>KIR合规旅游巴士，车龄不超过5年，每座配安全带</li>
+        <li>司机驾龄4小时强制休息，严禁疲劳驾驶</li>
+        <li>努沙杜瓦五星级度假酒店，统一入住</li>
+        <li>餐饮：儿童专属菜单+过敏源标注</li>
+      </ul>
+    </div>
+    <div class="card fade-in">
+      <h3>🆘 应急体系</h3>
+      <ul>
+        <li>随队急救药箱（晕车药/止泻药/抗过敏药等）</li>
+        <li>巴厘岛本地应急医院绿色通道</li>
+        <li>24小时紧急联络人制度</li>
+        <li>每日签到安全管控表，全程可追溯</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════ 5. 多媒体展示 ════ -->
+<section class="section" id="media">
+  <h2 class="section-title">🎬 影像展示</h2>
+  <div class="section-divider"></div>
+  <p class="section-subtitle">住宿环境 · 活动花絮 · 研学场景 · 品牌宣传片</p>
+
+  <div class="media-tabs">
+    <button class="media-tab active" onclick="switchMediaTab('all')">全部</button>
+    <button class="media-tab" onclick="switchMediaTab('accommodation')">🏨 住宿场景</button>
+    <button class="media-tab" onclick="switchMediaTab('activity')">🎉 活动花絮</button>
+    <button class="media-tab" onclick="switchMediaTab('learning')">📚 研学场景</button>
+    <button class="media-tab" onclick="switchMediaTab('promo')">🎥 品牌宣传片</button>
+  </div>
+
+  <h3 style="margin: 1.5rem 0 1rem; font-size: 1.1rem; color: var(--deep-ocean);">🎥 视频</h3>
+  <div class="video-grid" id="video-grid">
+    <!-- brand promo -->
+    <div class="video-item" data-cat="promo all">
+      <video controls preload="metadata">
+        <source src="巴厘岛亲子游学营-品牌宣传片-V2.mp4" type="video/mp4">
+      </video>
+      <div class="media-info"><div class="title">品牌宣传片</div><div class="meta">50.5 MB · 品牌宣传</div></div>
+    
+
+  <h3 style="margin: 2.5rem 0 1rem; font-size: 1.1rem; color: var(--deep-ocean);">🖼️ 图片</h3>
+  <div class="image-grid" id="image-grid">
+    <!-- accommodation images -->
+    <div class="image-item" data-cat="accommodation all" onclick="openLightbox(this)"><img src="实地素材/住宿场景图片-1.jpg" loading="lazy"><div class="media-info"><div class="title">住宿场景-1</div></div></div>
+    <div class="image-item" data-cat="accommodation all" onclick="openLightbox(this)"><img src="实地素材/住宿场景图片-2.jpg" loading="lazy"><div class="media-info"><div class="title">住宿场景-2</div></div></div>
+    <div class="image-item" data-cat="accommodation all" onclick="openLightbox(this)"><img src="实地素材/住宿场景图片-3.jpg" loading="lazy"><div class="media-info"><div class="title">住宿场景-3</div></div></div>
+    <div class="image-item" data-cat="accommodation all" onclick="openLightbox(this)"><img src="实地素材/住宿场景图片-4.jpg" loading="lazy"><div class="media-info"><div class="title">住宿场景-4</div></div></div>
+    <div class="image-item" data-cat="accommodation all" onclick="openLightbox(this)"><img src="实地素材/住宿场景图片-5.jpg" loading="lazy"><div class="media-info"><div class="title">住宿场景-5</div></div></div>
+    <div class="image-item" data-cat="accommodation all" onclick="openLightbox(this)"><img src="实地素材/住宿场景图片-6.jpg" loading="lazy"><div class="media-info"><div class="title">住宿场景-6</div></div></div>
+    <div class="image-item" data-cat="accommodation all" onclick="openLightbox(this)"><img src="实地素材/住宿场景图片-7.jpg" loading="lazy"><div class="media-info"><div class="title">住宿场景-7</div></div></div>
+    <div class="image-item" data-cat="accommodation all" onclick="openLightbox(this)"><img src="实地素材/住宿场景图片-8.jpg" loading="lazy"><div class="media-info"><div class="title">住宿场景-8</div></div></div>
+    <!-- activity images -->
+    <div class="image-item" data-cat="activity all" onclick="openLightbox(this)"><img src="实地素材/活动花絮图片-1.jpg" loading="lazy"><div class="media-info"><div class="title">活动花絮-1</div></div></div>
+    <div class="image-item" data-cat="activity all" onclick="openLightbox(this)"><img src="实地素材/活动花絮图片-2.jpg" loading="lazy"><div class="media-info"><div class="title">活动花絮-2</div></div></div>
+    <div class="image-item" data-cat="activity all" onclick="openLightbox(this)"><img src="实地素材/活动花絮图片-3.jpg" loading="lazy"><div class="media-info"><div class="title">活动花絮-3</div></div></div>
+    <div class="image-item" data-cat="activity all" onclick="openLightbox(this)"><img src="实地素材/活动花絮图片-4.jpg" loading="lazy"><div class="media-info"><div class="title">活动花絮-4</div></div></div>
+    <div class="image-item" data-cat="activity all" onclick="openLightbox(this)"><img src="实地素材/活动花絮图片-5.jpg" loading="lazy"><div class="media-info"><div class="title">活动花絮-5</div></div></div>
+    <!-- learning images -->
+    <div class="image-item" data-cat="learning all" onclick="openLightbox(this)"><img src="实地素材/研学场景图片-1.jpg" loading="lazy"><div class="media-info"><div class="title">研学场景-1</div></div></div>
+    <div class="image-item" data-cat="learning all" onclick="openLightbox(this)"><img src="实地素材/研学场景图片-2.jpg" loading="lazy"><div class="media-info"><div class="title">研学场景-2</div></div></div>
+    <div class="image-item" data-cat="learning all" onclick="openLightbox(this)"><img src="实地素材/研学场景图片-3.jpg" loading="lazy"><div class="media-info"><div class="title">研学场景-3</div></div></div>
+    <div class="image-item" data-cat="learning all" onclick="openLightbox(this)"><img src="实地素材/研学场景图片-4.jpg" loading="lazy"><div class="media-info"><div class="title">研学场景-4</div></div></div>
+    <div class="image-item" data-cat="learning all" onclick="openLightbox(this)"><img src="实地素材/研学场景图片-5.jpg" loading="lazy"><div class="media-info"><div class="title">研学场景-5</div></div></div>
+    <div class="image-item" data-cat="learning all" onclick="openLightbox(this)"><img src="实地素材/研学场景图片-6.jpg" loading="lazy"><div class="media-info"><div class="title">研学场景-6</div></div></div>
+    <div class="image-item" data-cat="learning all" onclick="openLightbox(this)"><img src="实地素材/研学场景图片-7.jpg" loading="lazy"><div class="media-info"><div class="title">研学场景-7</div></div></div>
+    <div class="image-item" data-cat="learning all" onclick="openLightbox(this)"><img src="实地素材/研学场景图片-8.jpg" loading="lazy"><div class="media-info"><div class="title">研学场景-8</div></div></div>
+  </div>
+</section>
+
+<!-- ════ Lightbox ════ -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<!-- ════ 6. 文档资料 ════ -->
+<section class="section" id="docs" style="background: #F8FBFD;">
+  <h2 class="section-title">📄 项目文档</h2>
+  <div class="section-divider"></div>
+  <p class="section-subtitle">点击文件名在本地打开或下载查阅</p>
+
+  <div class="doc-list fade-in">
+    <a class="doc-item" href="为什么我带孩子去巴厘岛上课-推文.pdf" target="_blank">
+      <div class="doc-icon pdf">PDF</div>
+      <div><div style="font-weight:600;font-size:0.9rem;">为什么我带孩子去巴厘岛上课</div><div style="font-size:0.75rem;color:var(--text-light);">推文 · 品牌故事</div></div>
+    </a>
+    <a class="doc-item" href="为什么我带孩子去巴厘岛上课-绘本.pdf" target="_blank">
+      <div class="doc-icon pdf">PDF</div>
+      <div><div style="font-weight:600;font-size:0.9rem;">为什么我带孩子去巴厘岛上课</div><div style="font-size:0.75rem;color:var(--text-light);">绘本版 · 亲子阅读</div></div>
+    </a>
+    <a class="doc-item" href="巴厘岛亲子游学营（师资介绍）.pdf" target="_blank">
+      <div class="doc-icon pdf">PDF</div>
+      <div><div style="font-weight:600;font-size:0.9rem;">师资介绍</div><div style="font-size:0.75rem;color:var(--text-light);">团队背景与资质</div></div>
+    </a>
+    <a class="doc-item" href="巴厘岛亲子营安全保障白皮书.pdf" target="_blank">
+      <div class="doc-icon pdf">PDF</div>
+      <div><div style="font-weight:600;font-size:0.9rem;">安全保障白皮书</div><div style="font-size:0.75rem;color:var(--text-light);">面向园长的完整方案</div></div>
+    </a>
+    <a class="doc-item" href="巴厘岛亲子营安全保障手册.pdf" target="_blank">
+      <div class="doc-icon pdf">PDF</div>
+      <div><div style="font-weight:600;font-size:0.9rem;">安全保障手册</div><div style="font-size:0.75rem;color:var(--text-light);">全维度安全管控</div></div>
+    </a>
+    <a class="doc-item" href="巴厘岛亲子营每日签到安全管控表（范本）.pdf" target="_blank">
+      <div class="doc-icon pdf">PDF</div>
+      <div><div style="font-weight:600;font-size:0.9rem;">每日签到安全管控表</div><div style="font-size:0.75rem;color:var(--text-light);">范本 · 每日追溯记录</div></div>
+    </a>
+    <a class="doc-item" href="渠道合作手册-面向园长.pdf" target="_blank">
+      <div class="doc-icon pdf">PDF</div>
+      <div><div style="font-weight:600;font-size:0.9rem;">渠道合作手册</div><div style="font-size:0.75rem;color:var(--text-light);">面向幼儿园园长</div></div>
+    </a>
+   </div>
+</section>
+
+<!-- ════ 7. 渠道合作 ════ -->
+<section class="section" id="cooperation">
+  <h2 class="section-title">🤝 渠道合作</h2>
+  <div class="section-divider"></div>
+  <p class="section-subtitle">面向幼儿园园长、教育机构和亲子社群，提供定制化合作方案</p>
+
+  <div class="card-grid fade-in">
+    <div class="card">
+      <div class="card-icon ocean">🏫</div>
+      <h3>幼儿园/学校渠道</h3>
+      <p>为幼儿园提供专属营期、定制课程和阶梯式合作方案。依托森林学校+华德福教育理念，与学前教育的日常实践无缝衔接，为园所提供差异化的暑期增值服务。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon coral">📱</div>
+      <h3>亲子社群/KOL</h3>
+      <p>欢迎亲子类自媒体、社群运营者合作推广。提供专属素材包、体验名额和阶梯分润机制，让优质教育产品找到真正需要它的家庭。</p>
+    </div>
+    <div class="card">
+      <div class="card-icon sun">🎯</div>
+      <h3>品牌联名/企业定制</h3>
+      <p>接受企业团建+亲子游学联名定制，为品牌客户提供差异化的员工福利方案。7天行程可灵活调整，满足不同企业的需求。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════ Footer ════ -->
+<footer>
+  <p>巴厘岛亲子游学营 &copy; 2026 &nbsp;·&nbsp; 印度尼西亚·巴厘岛 &nbsp;·&nbsp; 全英双语沉浸式自然学习</p>
+  <p style="margin-top: 0.5rem; opacity: 0.6;">本页面由 project-intro-html-generator v2.0 自动生成</p>
+</footer>
+
+<script>
+  // ── Scroll fade-in animation ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ── Media tab switching ──
+  function switchMediaTab(cat) {
+    document.querySelectorAll('.media-tab').forEach(t => t.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('#video-grid .video-item, #image-grid .image-item').forEach(el => {
+      el.style.display = el.dataset.cat.includes(cat) ? '' : 'none';
+    });
+  }
+
+  // ── Lightbox ──
+  function openLightbox(el) {
+    const img = el.querySelector('img');
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // ── Smooth scroll for nav links ──
+  document.querySelectorAll('.nav a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>
